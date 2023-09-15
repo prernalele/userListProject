@@ -7,17 +7,23 @@ function App() {
   
   const [userList, setUserList] = useState([])
   
-  const addUserHandler = (newList) => {
-    if(newList.length >= 1) {
-      setUserList((prevList)=> [...prevList, ...newList ])
-    }
-  }
-
+  const addUserHandler = (name, age) => {
+    setUserList((prevList) => {
+      return [
+        ...prevList,
+        {
+          name,
+          age,
+          id: Math.random().toString(),
+        },
+      ];
+    });
+  };
 
   return (
     <div>
-      <UserInput onFormSubmit={addUserHandler}/>
-      {userList.length >0   && <ListOfUsers users={userList}/>}
+      <UserInput onFormSubmit={addUserHandler} />
+      {userList.length > 0 && <ListOfUsers users={userList} />}
     </div>
   );
 }

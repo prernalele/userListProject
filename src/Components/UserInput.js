@@ -3,62 +3,88 @@ import './UserInput.css'
 import ErrorModal from "./ErrorModal";
 
 const UserInput = (props) => {
-   const [inputValue, setInputValue] = useState()
-   const [error, setError] = useState()
-   const newList = []
+  const [name, setName] = useState("");
+  const [age, setAge] = useState("");
+  const [error, setError] = useState();
 
-    const onChangeHandler = (inputType, value) => (
-        
-         setInputValue((prevInput) => {
-            console.log("prevInput", prevInput)
-            return {
-                ...prevInput,
-            [inputType]: value,
-            }
-            
-        })
+  const onNameChange = (event) => {
+    setName(event.target.value);
+  };
 
-    )
+  const onAgeChange = (event) => {
+    setAge(event.target.value);
+  };
 
-    const submitHandler = (event) => {
-        event.preventDefault()
-        if(inputValue.name.trim().length === 0 && inputValue.age.trim().length === 0) {
-            setError({
-                title: 'invalid input',
-                message: 'Please enter a valid name and age (non-empty values).'
-            })
-        return
-        }
-        if( inputValue.age < 1) {
-            setError({
-                title: 'Invalid Age',
-                message: "Please enter a valid age (>0)"
-            })
-            return;
-        }
-        newList.push(inputValue)
-        props.onFormSubmit(newList)
+  const submitHandler = (event) => {
+    event.preventDefault();
+    if (name.trim().length === 0 && age.trim().length === 0) {
+      setError({
+        title: "Invalid Input",
+        message: "Please enter a valid name and age (non-empty values).",
+      });
+      return;
     }
+    if (age < 1) {
+      setError({
+        title: "Invalid Age",
+        message: "Please enter a valid age (>0)",
+      });
+      return;
+    }
+    props.onFormSubmit(name, age);
+    setName("");
+    setAge("");
+  };
 
-    return (
-        <div>
-            { error && <ErrorModal title={error.title} message={error.message}/> }
-            <form className="formClass" onSubmit={submitHandler}>
-            <div className="userInputClass">
-            <p className="userName">
-            <label htmlFor="name" className="nameLabel">Username</label>
-            <p><input id="name" className="nameInputBox" onChange={(event) => onChangeHandler('name', event.target.value)}/></p> 
-            </p>
+  const errorAckHandler = () => {
+    setError(null);
+  };
+
+  return (
+    <div>
+      {error && (
+        <ErrorModal
+          title={error.title}
+          message={error.message}
+          onClickingOk={errorAckHandler}
+        />
+      )}
+      <form className="formClass" onSubmit={submitHandler}>
+        <div className="userInputClass">
+          <p className="userName">
+            <label htmlFor="name" className="nameLabel">
+              Username
+            </label>
             <p>
-            <label htmlFor="age" className="ageLabel">Age (Years) </label>
-            <p><input id="age" type="number" className="ageInputBox" onChange={(event) => onChangeHandler('age', event.target.value)}/></p>
+              <input
+                id="name"
+                className="nameInputBox"
+                value={name}
+                onChange={onNameChange}
+              />
             </p>
-            <button type="submit" className="addUserButtonClass"> Add User</button>
-            </div>
-        </form>
+          </p>
+          <p>
+            <label htmlFor="age" className="ageLabel">
+              Age (Years)
+            </label>
+            <p>
+              <input
+                id="age"
+                type="number"
+                className="ageInputBox"
+                value={age}
+                onChange={onAgeChange}
+              />
+            </p>
+          </p>
+          <button type="submit" className="addUserButtonClass">
+            Add User
+          </button>
         </div>
-
-    )
+      </form>
+    </div>
+  );
 }
 
 export default UserInput

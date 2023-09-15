@@ -3,15 +3,19 @@ import './ErrorModal.css'
 
 const ErrorModal = (props) => {
     return (
-        <div>
-            <header>
-                <h2> {props.error.title}</h2>
-            </header>
-            <p>
-                {props.error.message}
-            </p>
+      <div>
+        <div className="backOverlay"></div>
+        <div className="modal">
+          <header className="title">
+            <h2> {props.title}</h2>
+          </header>
+          <p className="message">{props.message}</p>
+          <button type="submit" onClick={props.onClickingOk} className="button">
+            Okay
+          </button>
         </div>
-    )
+      </div>
+    );
 
 }
 
