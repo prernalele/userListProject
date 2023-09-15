@@ -1,0 +1,22 @@
+
+.userCard {
+    background-color: white;
+    width: 45%;
+    height: 50%;
+    border-radius: 10px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.userCard > p {
+    height: 20%;
+    text-align: left;
+    padding: 10px;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: black;
+    border-style: solid
+}

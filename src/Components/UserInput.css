@@ -1,0 +1,35 @@
+body {
+    background-color: black;
+}
+.userInputClass {
+    width:45%;
+    text-align: left;
+    font-weight:bold;
+    color: black;  
+    background-color: white;
+    margin: auto;
+    margin-top:20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius:15px;
+}
+
+.nameInputBox, .ageInputBox {
+    margin-left: 10px;
+    width: 90%;
+    height: 30px;
+    margin-bottom:1px;
+}
+
+.addUserButtonClass {
+    background-color: blueviolet;
+    color: white;
+    align-items: left;
+    margin-left: 10px;
+    width: 85px;
+    height: 35px;   
+}
+
+.nameLabel, .ageLabel  {
+    margin-left: 10px;
+}
